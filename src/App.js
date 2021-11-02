@@ -7,33 +7,28 @@ import Login from "./Login";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 
-
-
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
-
-
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-
-      console.log("user is ", authUser);
       if (authUser) {
         //the user logged in
-        dispatch(login({
-          uid: authUser.uid,
-          photo: authUser.photoURL,
-          email: authUser.email,
-          displayName: authUser.displayName,
-
-        }))
+        dispatch(
+          login({
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email: authUser.email,
+            displayName: authUser.displayName,
+          })
+        );
       } else {
         //the user is logged out
-        dispatch(logout())
+        dispatch(logout());
       }
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
