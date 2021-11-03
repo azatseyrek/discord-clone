@@ -79,3 +79,7 @@
 .sidebar__profileInfo > h3 {
     color: white;
 }
+
+.sidebar__voiceIcon {
+    color: #4fb185;
+}
